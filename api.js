@@ -8,9 +8,12 @@ module.exports = class Api {
   }
 
   getProduct(id) {
-    let target = this.productos.filter((product) => product.id === id)[0];
+    let target = this.productos.filter(
+      (product) => product.id === parseInt(id)
+    )[0];
+    console.log(target);
     if (target === undefined) {
-      return { error: "No se ha encontrado ningun producto con ese id" };
+      return false;
     } else {
       return target;
     }
@@ -18,17 +21,17 @@ module.exports = class Api {
 
   addProduct(item) {
     this.productos.push({
-      id: item.id || this.productos.length,
+      id: item.id || this.productos.length + 1,
       name: item.name,
       price: item.price,
       thumbnail: item.thumbnail,
     });
-
-    return this.productos;
+    let newItem = this.productos.slice(-1);
+    return newItem[0];
   }
 
   editProduct(id, item) {
-    let target = this.getProduct(id);
+    let target = this.getProduct(parseInt(id));
 
     target.name = item.name;
     target.price = item.price;
@@ -37,9 +40,20 @@ module.exports = class Api {
   }
 
   deleteProduct(id) {
-    this.productos.splice(this.productos.indexOf(id), 1);
+    let todos = this.getAllProducts();
 
-    return this.productos;
+    let index = todos
+      .map((x) => {
+        return x.id;
+      })
+      .indexOf(parseInt(id));
+    if (index === -1) {
+      return false;
+    } else {
+      let deletedItem = this.productos.splice(index, 1);
+
+      return deletedItem[0];
+    }
   }
 };
 

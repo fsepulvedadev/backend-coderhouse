@@ -4,7 +4,87 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.27.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Control de productos</title>
   </head>
-  <body></body>
+  <body>
+    <div class="w-full h-screen flex flex-col items-center">
+      <h1 class="text-2xl text-indigo-800 font-bold h-30 my-10">
+        Carga de productos 📦
+      </h1>
+      <form
+        class="flex w-1/2 h-1/2 flex-col justify-between items-center"
+        id="formulario"
+      >
+        <div class="form-control">
+          <label class="input-group input-group-md">
+            <span>Nombre</span>
+            <input
+              id="name"
+              type="text"
+              placeholder="Nombre del producto"
+              class="input input-bordered input-md"
+            />
+          </label>
+        </div>
+        <div class="form-control">
+          <label class="input-group input-group-md">
+            <span>Precio</span>
+            <input
+              id="precio"
+              type="number"
+              placeholder="Precio del producto"
+              class="input input-bordered input-md"
+            />
+          </label>
+        </div>
+        <div class="form-control">
+          <label class="input-group input-group-md">
+            <span>Link Imagen</span>
+            <input
+              id="url"
+              type="text"
+              placeholder="Url de la imagen"
+              class="input input-bordered input-md"
+            />
+          </label>
+        </div>
+        <button id="enviar" class="btn btn-primary my-4 w-1/3">Enviar</button>
+      </form>
+    </div>
+
+    <script>
+      window.addEventListener("load", () => {
+        let boton = document.getElementById("enviar");
+        boton.addEventListener("click", publicarData);
+      });
+      function publicarData(e) {
+        try {
+          e.preventDefault();
+          let formNombre = document.getElementById("name");
+          let formPrecio = document.getElementById("precio");
+          let formUrl = document.getElementById("url");
+          let xhr = new XMLHttpRequest();
+          let newProducto = {
+            name: formNombre.value,
+            price: parseInt(formPrecio.value),
+            thumbnail: formUrl.value,
+          };
+
+          xhr.open("POST", "http://localhost:8080/api/productos/");
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(JSON.stringify(newProducto));
+
+          console.log(newProducto);
+        } catch (error) {
+          console.log("Hubo un error", error);
+        }
+      }
+    </script>
+  </body>
 </html>
