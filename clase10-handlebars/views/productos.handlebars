@@ -1,0 +1,43 @@
+<main
+  class="container d-flex flex-column align-items-center justify-center vh-100"
+>
+  <div class="row my-5 h-100">
+    <h4 class="text-center text-danger">Productos</h4>
+    {{#if productos}}
+
+      <table class="col table table-light table-striped me-4">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Link IMG</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each productos}}
+            <tr>
+              <td class="p-3">{{this.name}}</td>
+              <td class="p-3">{{this.price}}</td>
+              <td class="p-3 d-flex justify-content-center">
+                <img
+                  onerror="this.onerror=null;this.src='https://via.placeholder.com/250?text=No+se+pudo+cargar+la+imagen';"
+                  class="w-25 h-25"
+                  src={{this.thumbnail}}
+                  alt="imagen de producto"
+                />
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p class="badge badge-danger text-bg-danger p-3 col h-25">
+        No se han encontrado productos
+      </p>
+    {{/if}}
+
+  </div>
+
+  <a href="/" class="btn btn-dark">Volver al formulario</a>
+
+</main>

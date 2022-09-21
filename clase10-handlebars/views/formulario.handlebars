@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gestion de productos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+
+  </head>
+  <body class="w-full flex flex-col h-screen items-center justify-center">
+    <main
+      class="container d-flex flex-column align-items-center justify-center vh-100"
+    >
+      <h1 class="text-center">Ingrese datos</h1>
+      <form
+        class="w-50 row align-items-center justify-content-center h-50 bg-secondary bg-gradient bg-opacity-25 p-4"
+      >
+        <div class="col-5 col-md-12">
+
+          <label
+            for="name"
+            class="form-label my-2 text-center w-100"
+          >Nombre</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            aria-describedby="passwordHelpBlock"
+          />
+        </div>
+        <div class="col-5 col-md-12">
+
+          <label
+            for="precio"
+            class="form-label my-2 text-center w-100"
+          >Precio</label>
+          <input
+            id="precio"
+            type="number"
+            class="form-control"
+            aria-describedby="passwordHelpBlock"
+          />
+        </div>
+        <div class="col-2 col-md-12">
+
+          <label for="url" class="form-label my-2 text-center w-100">Link IMG</label>
+          <input
+            id="url"
+            type="text"
+            class="form-control"
+            aria-describedby="passwordHelpBlock"
+          />
+        </div>
+        <button
+          type="button"
+          id="enviar"
+          class="btn btn-success my-4"
+        >Enviar</button>
+      </form>
+
+      <a href="/productos" class="btn btn-dark my-2">Ver productos</a>
+
+    </main>
+
+    <script src="./index.js">
+      
+    </{{!}}script>
+  </body>
+</html>
