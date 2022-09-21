@@ -1,0 +1,46 @@
+
+body(style='font-family: sans-serif') 
+    div(style='display:flex;flex-direction: column; justify-content: center; width: 100%; align-items:center;')
+        h1 Ingrese un producto
+        form(style='display:flex;flex-direction: column; justify-content: center; width: 100%; align-items:center; height:70vh;')
+            label(for='name' type='text') Nombre
+            input(id='name' type='text' style='width:25%; height: 1.7rem;')
+            label(for='precio' type='text' style='margin-top: 1rem') Precio
+            input(id='precio' type='number' style='width:25%; height: 1.7rem;') 
+            label(for='url' type='text' style='margin-top: 1rem;') Link IMG
+            input(id='url' type='text' style='width:25%; height: 1.7rem;') 
+            button(type='button' id='enviar' style='margin-top: 1rem; width:25%') Enviar
+        div(style='width:100%; display:flex; align-items: center; justify-content: center;') 
+            button(style='width:25%')
+                a(style='text-decoration: none; color: black' href='/productos') Ver lista de productos                                                
+
+
+    script. 
+          window.addEventListener("load", () => {
+        let boton = document.getElementById("enviar");
+        boton.addEventListener("click", publicarData);
+      });
+      function publicarData(e) {
+        try {
+          e.preventDefault();
+          let formNombre = document.getElementById("name");
+          let formPrecio = document.getElementById("precio");
+          let formUrl = document.getElementById("url");
+
+          let xhr = new XMLHttpRequest();
+          let newProducto = {
+            name: formNombre.value,
+            price: formPrecio.value,
+            thumbnail: formUrl.value,
+          };
+
+          xhr.open("POST", "http://localhost:8080/productos/");
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(JSON.stringify(newProducto));
+          location.reload()
+
+          console.log(newProducto);
+        } catch (error) {
+          console.log("Hubo un error", error);
+        }
+      }

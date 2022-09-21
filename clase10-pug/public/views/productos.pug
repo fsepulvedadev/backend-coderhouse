@@ -1,0 +1,22 @@
+
+body(style='width: 100%; display:flex;flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif')
+    main(style='display:flex; flex-direction: column; align-items: center; justify-content: center;')
+        div(style='height: 100vh')
+            h2(style='text-align: center') Productos
+                ul 
+                        table(style='border: 2px solid black;')
+                            thead 
+                                tr(style='border: 2px solid black;')
+                                    th Producto
+                                    th Precio
+                                    th Link IMG
+                                    tbody
+                                        for producto in productos
+                                            tr(style='text-align: center')
+                                                td(style='border: 2px solid black;') #{producto.name}
+                                                td(style='border: 2px solid black;') #{producto.price}
+                                                td(style='display:flex; align-items: center; justify-content: center; border: 2px solid black;') 
+                                                    img(src=producto.thumbnail style='width:25%; height:25%') 
+            div(style='width:100%; display:flex; align-items: center; justify-content: center;') 
+                button(style='width:25%')
+                    a(style='text-decoration: none; color: black'  href='/') Volver al formulario                                                 
